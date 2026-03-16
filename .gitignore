@@ -1,0 +1,18 @@
+@"
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+
+# Secrets — never commit these
+*.pem
+*.key
+vault-token.txt
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+"@ | Out-File -FilePath ".gitignore" -Encoding utf8
