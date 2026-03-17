@@ -1,0 +1,56 @@
+name: CI — Build and Push to ECR
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - '.github/workflows/ci.yaml'
+
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+
+jobs:
+  build-and-push:
+    name: Build and Push Frontend Image
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1 — Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2 — Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Step 3 — Log in to ECR
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      # Step 4 — Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t $ECR_REGISTRY/online-boutique/frontend:${{ github.sha }} \
+            -t $ECR_REGISTRY/online-boutique/frontend:latest \
+            ./src/frontend
+
+      # Step 5 — Push to ECR
+      - name: Push image to ECR
+        run: |
+          docker push $ECR_REGISTRY/online-boutique/frontend:${{ github.sha }}
+          docker push $ECR_REGISTRY/online-boutique/frontend:latest
+
+      # Step 6 — Print image URI
+      - name: Print image URI
+        run: |
+          echo "Image pushed to:"
+          echo "$ECR_REGISTRY/online-boutique/frontend:${{ github.sha }}"
