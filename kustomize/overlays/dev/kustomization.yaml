@@ -4,11 +4,6 @@ kind: Kustomization
 resources:
   - ../../base
 
-labels:
-  - pairs:
-      managed-by: argocd
-      environment: dev
-
 images:
   - name: frontend
     newName: 861276082757.dkr.ecr.us-east-1.amazonaws.com/online-boutique/frontend
