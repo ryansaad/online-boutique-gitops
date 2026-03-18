@@ -82,7 +82,7 @@ kubectl patch storageclass gp2 \
 ```bash
 kubectl create secret generic minio-vault-token \
   --from-literal=accesskey="minio-admin" \
-  --from-literal=secretkey="minio-password-123" \
+  --from-literal=secretkey="*********" \
   -n minio
 ```
 
@@ -97,7 +97,7 @@ kubectl get service minio-external -n minio
 ```
 
 ## Access Details
-- Console URL: http://ac2cc0ad65ab841e693bb413b1b7fbd7-1818848719.us-east-1.elb.amazonaws.com:9001
+- Console URL: http://LB_URL:9001
 - Username: minio-admin
 - Bucket created: velero-backups
 

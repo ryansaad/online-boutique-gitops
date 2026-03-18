@@ -58,12 +58,12 @@ aws eks update-kubeconfig --region us-east-1 --name online-boutique
 ```bash
 aws eks create-access-entry \
   --cluster-name online-boutique \
-  --principal-arn arn:aws:iam::861276082757:user/Ryansaad_IAM_Admin \
+  --principal-arn arn:aws:iam::accountid:user/Ryansaad_IAM_Admin \
   --type STANDARD
 
 aws eks associate-access-policy \
   --cluster-name online-boutique \
-  --principal-arn arn:aws:iam::861276082757:user/Ryansaad_IAM_Admin \
+  --principal-arn arn:aws:iam::accountid:user/Ryansaad_IAM_Admin \
   --policy-arn arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy \
   --access-scope type=cluster
 ```
@@ -90,4 +90,4 @@ kubectl get service frontend-external
 
 ## Result
 Online Boutique storefront accessible at:
-http://aa054b2817aa4433e88d6ec1d76f1fc6-16301100.us-east-1.elb.amazonaws.com
+http://LB_URL

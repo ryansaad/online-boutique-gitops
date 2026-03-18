@@ -27,7 +27,7 @@ Complete ✅
 Vault (inside EKS)
     └── secret/minio/credentials
             ├── accesskey: minio-admin
-            └── secretkey: minio-password-123
+            └── secretkey: *************
                     ↓
             Kubernetes Secret
             minio-vault-token
@@ -57,14 +57,14 @@ kubectl exec -it vault-0 -n vault -- /bin/sh
 ```bash
 vault kv put secret/minio/credentials \
   accesskey="minio-admin" \
-  secretkey="minio-password-123"
+  secretkey="*********"
 ```
 
 ### Create Kubernetes secret from Vault credentials
 ```bash
 kubectl create secret generic minio-vault-token \
   --from-literal=accesskey="minio-admin" \
-  --from-literal=secretkey="minio-password-123" \
+  --from-literal=secretkey="*************" \
   -n default
 ```
 

@@ -16,7 +16,7 @@ Complete ✅
 
 ## What Was Built
 - ECR repository at:
-  `861276082757.dkr.ecr.us-east-1.amazonaws.com/online-boutique/frontend`
+  `accountid.dkr.ecr.us-east-1.amazonaws.com/online-boutique/frontend`
 - GitHub Actions workflow that triggers on every push to main
 - Pipeline builds the frontend Docker image from `src/frontend`
 - Image is tagged with both `latest` and the git commit SHA
