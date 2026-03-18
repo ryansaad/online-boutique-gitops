@@ -1,0 +1,10 @@
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: online-boutique-backup
+  namespace: velero
+spec:
+  includedNamespaces:
+    - default
+  storageLocation: default
+  ttl: 720h

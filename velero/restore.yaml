@@ -1,0 +1,9 @@
+﻿apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: online-boutique-restore
+  namespace: velero
+spec:
+  backupName: online-boutique-backup
+  includedNamespaces:
+    - default
