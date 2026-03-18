@@ -16,3 +16,6 @@ vault-token.txt
 .DS_Store
 Thumbs.db
 "@ | Out-File -FilePath ".gitignore" -Encoding utf8
+
+#velero
+credentials-velero
